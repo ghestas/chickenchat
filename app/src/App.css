@@ -1,9 +1,24 @@
 .app {
   position: relative;
+  background-color: rgb(240, 240, 240);
+  width: 100vw;
+  height: 100vh;
+}
+
+.chat-container {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
 }
 
 .chat {
-  height: 100vw;
+  margin: 20px;
+  background-color: white;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
 }
 
 * {
