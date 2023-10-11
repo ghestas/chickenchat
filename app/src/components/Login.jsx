@@ -54,7 +54,7 @@ export default function Login(){
                     value={logData.user}
                 />
                 <input
-                    type="text"
+                    type="password"
                     placeholder="password"
                     onChange={handleChangeLog}
                     name="pass"
@@ -73,7 +73,7 @@ export default function Login(){
                     value={createData.user}
                 />
                 <input
-                    type="text"
+                    type="password"
                     placeholder="password"
                     onChange={handleChangeCreate}
                     name="pass"

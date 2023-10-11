@@ -19,6 +19,8 @@
   background-color: white;
   width: calc(100% - 40px);
   height: calc(100% - 40px);
+  border-radius: 10px;
+  padding: 20px;
 }
 
 * {
