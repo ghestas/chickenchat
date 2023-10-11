@@ -1,3 +1,11 @@
 .app {
   position: relative;
 }
+
+.chat {
+  height: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+}
