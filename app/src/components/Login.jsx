@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function chat(){
+export default function Login(){
     return(
-        <div className="chat">
+        <div className="login">
             
         </div>
     )
