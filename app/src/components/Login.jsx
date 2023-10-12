@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getDoc, doc, setDoc} from "firebase/firestore"
+import { platesCollection, db } from '../firebase';
+
 
 export default function Login(){
+    const docRef = doc(db, "auth", "logins")
+
+    const [accounts, setAccounts] = useState([])
+
     const [logData, setLogData] = useState({
         user: "",
         pass: ""
     })
+
 
     function handleChangeLog(event) {
         const {name, value} = event.target
@@ -26,6 +34,20 @@ export default function Login(){
         pass: ""
     })
 
+    //firebase
+
+    useEffect(() => {
+        readAndSetFireBaseData()
+    }, [])
+
+
+    async function readAndSetFireBaseData(){
+        const dataRef = (await getDoc(docRef)); 
+        const dataVin = dataRef.data();
+        // setDark(dataVin.dark)
+        console.log(dataVin)
+    }
+
     function handleChangeCreate(event) {
         const {name, value} = event.target
         setCreateData(prevFormData => {
@@ -39,6 +61,21 @@ export default function Login(){
     function handleSubmitCreate(event) {
         event.preventDefault()
         console.log(createData)
+        createAcount()
+    }
+
+
+    //add account
+    async function createAcount(){
+        var newArr = accounts;
+        newArr.push(createData)
+        setAccounts(newArr);
+        console.log(accounts)
+        syncData()
+    }
+
+    async function syncData(){
+        await setDoc(docRef, {accounts})
     }
 
     return(
@@ -54,7 +91,7 @@ export default function Login(){
                     value={logData.user}
                 />
                 <input
-                    type="password"
+                    type="text"
                     placeholder="password"
                     onChange={handleChangeLog}
                     name="pass"
@@ -64,7 +101,7 @@ export default function Login(){
             </form>
 
             <form onSubmit={handleSubmitCreate}>
-                <h2>Login</h2>
+                <h2>Sign Up</h2>
                 <input
                     type="text"
                     placeholder="username"
@@ -73,7 +110,7 @@ export default function Login(){
                     value={createData.user}
                 />
                 <input
-                    type="password"
+                    type="text"
                     placeholder="password"
                     onChange={handleChangeCreate}
                     name="pass"
