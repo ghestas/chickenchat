@@ -8,6 +8,19 @@ export default function Login(){
 
     const [accounts, setAccounts] = useState([])
 
+    //firebase
+
+    useEffect(() => {
+        displayData()
+    }, [])
+
+    async function displayData(){
+        var accountsArr = await getDoc(docRef);
+        accountsArr = accountsArr.data()
+        accountsArr = accountsArr.newArr
+        console.log(accountsArr)
+    }
+
     const [logData, setLogData] = useState({
         user: "",
         pass: ""
@@ -22,12 +35,11 @@ export default function Login(){
                 [name]: value
             }
         })
-        syncData()
+
     }
 
     function handleSubmitLog(event) {
         event.preventDefault()
-        console.log(logData)
         signIn()
     }
 
@@ -35,21 +47,6 @@ export default function Login(){
         user: "",
         pass: ""
     })
-
-    //firebase
-
-    useEffect(() => {
-        readAndSetFireBaseData()
-        syncData()
-    }, [])
-
-
-    async function readAndSetFireBaseData(){
-        const dataRef = (await getDoc(docRef)); 
-        const dataVin = dataRef.data();
-        // setDark(dataVin.dark)
-        console.log(dataVin)
-    }
 
     function handleChangeCreate(event) {
         const {name, value} = event.target
@@ -59,40 +56,38 @@ export default function Login(){
                 [name]: value
             }
         })
-        syncData()
+        
     }
 
     function handleSubmitCreate(event) {
         event.preventDefault()
-        console.log(createData)
         createAccount()
     }
 
 
+    //firebase
+
     //add account
-    function createAccount(){
-        var newArr = accounts;
+    async function createAccount(){
+        var arr = await getDoc(docRef);
+        var vin = arr.data()
+        var newArr = vin.newArr
         newArr.push(createData)
-        setAccounts(newArr);
-        console.log(accounts)
-        syncData()
+        await setDoc(docRef, {newArr})
     }
 
-    function signIn(){
-        for (let i = 0; i < accounts.length; i++) {
-            const account = accounts[i];
-            console.log()
+
+    //sign in
+    async function signIn(){
+        var accountsArr = await getDoc(docRef);
+        accountsArr = accountsArr.data()
+        accountsArr = accountsArr.newArr
+        for (let i = 0; i < accountsArr.length; i++) {
+            const account = accountsArr[i];
             if (account.user === logData.user && account.pass === logData.pass){
                 console.log("sucsessfull login")
             }
         }
-    }
-
-    async function syncData(){
-        await setDoc(docRef, {accounts})
-        const data = await getDoc(docRef)
-        console.log("sync")
-        console.log(data.data())   
     }
 
 

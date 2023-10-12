@@ -5,8 +5,8 @@ import Chat from './components/chat'
 function App() {
   return (
     <div className='app'>
-      {/* <Login /> */}
-      <Chat />
+      <Login />
+      {/* <Chat /> */}
     </div>
   );
 }
