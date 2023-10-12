@@ -10,7 +10,7 @@ export default function Messages({chat}) {
     })
 
     return (
-        <div>
+        <div className="message-window">
             <h2>{chat.name}</h2>
             {messagesHtml}
         </div>
