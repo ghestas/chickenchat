@@ -3,7 +3,7 @@ import { getDoc, doc, setDoc} from "firebase/firestore"
 import { platesCollection, db } from '../firebase';
 
 
-export default function Login(){
+export default function Login(props){
     const docRef = doc(db, "auth", "logins")
 
     const [accounts, setAccounts] = useState([])
@@ -86,6 +86,8 @@ export default function Login(){
             const account = accountsArr[i];
             if (account.user === logData.user && account.pass === logData.pass){
                 console.log("sucsessfull login")
+                props.log()
+
             }
         }
     }
