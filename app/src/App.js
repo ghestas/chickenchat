@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className='app'>
-      {loggedIn === true ? <Chat /> : <Login log={Login}/>}
+      {loggedIn === false ? <Chat /> : <Login log={Login}/>}
     </div>
   );
 }
