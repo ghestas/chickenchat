@@ -66,7 +66,7 @@ export default function Login(){
 
 
     //add account
-    async function createAcount(){
+    function createAcount(){
         var newArr = accounts;
         newArr.push(createData)
         setAccounts(newArr);
@@ -74,8 +74,23 @@ export default function Login(){
         syncData()
     }
 
+    function signIn(){
+        for (let i = 0; i < accounts.length; i++) {
+            const account = accounts[i];
+            if (account === logData){
+                console.log("sucsessfull login")
+            }
+        }
+    }
+
     async function syncData(){
         await setDoc(docRef, {accounts})
+    }
+
+
+    //sync data
+    async function syncData(){
+        
     }
 
     return(
