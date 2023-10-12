@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function Person({name, lastMessage}) {
     return (    
-        <div>
+        <div className="person">
             <h3>{name}</h3>
             <p>{lastMessage}</p>
         </div>
