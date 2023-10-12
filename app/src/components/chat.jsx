@@ -4,7 +4,7 @@ import Person from "./person.jsx";
 import Messages from "./messages.jsx";
 
 export default function Chat(){
-    const [peopleArray, setPeopleArray] = useState([{name: 'jack', chat: ['hi','hi','this was my last message!']}, {name: 'steven', chat: ['hjkhjkh', 'jhh', 'this was also my last message!']}]) //this'll be all the chats the user is in
+    const [peopleArray, setPeopleArray] = useState([{name: 'jack', chat: ['hi','hi','this was my last message!', 'I CHANGED MY LAST MESSAGE!']}, {name: 'steven', chat: ['hjkhjkh', 'jhh', 'this was also my last message!']}]) //this'll be all the chats the user is in
     const [selectedChat, setSelectedChat] = useState(1) //a chat will have a distinct name not chosen by anyone else
 
     const selectChat = (event) => {

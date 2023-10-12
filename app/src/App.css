@@ -47,5 +47,9 @@
 
 .message-window-container {
   width: calc(100% - 300px);
-  border: 5px dotted black;
+  border: 5px solid black;
+}
+
+.message-window {
+  padding: 20px;
 }
