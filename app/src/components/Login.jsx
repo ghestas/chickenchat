@@ -61,12 +61,12 @@ export default function Login(){
     function handleSubmitCreate(event) {
         event.preventDefault()
         console.log(createData)
-        createAcount()
+        createAccount()
     }
 
 
     //add account
-    function createAcount(){
+    function createAccount(){
         var newArr = accounts;
         newArr.push(createData)
         setAccounts(newArr);
