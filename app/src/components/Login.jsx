@@ -22,11 +22,13 @@ export default function Login(){
                 [name]: value
             }
         })
+        syncData()
     }
 
     function handleSubmitLog(event) {
         event.preventDefault()
         console.log(logData)
+        signIn()
     }
 
     const [createData, setCreateData] = useState({
@@ -38,6 +40,7 @@ export default function Login(){
 
     useEffect(() => {
         readAndSetFireBaseData()
+        syncData()
     }, [])
 
 
@@ -56,6 +59,7 @@ export default function Login(){
                 [name]: value
             }
         })
+        syncData()
     }
 
     function handleSubmitCreate(event) {
@@ -77,7 +81,8 @@ export default function Login(){
     function signIn(){
         for (let i = 0; i < accounts.length; i++) {
             const account = accounts[i];
-            if (account === logData){
+            console.log()
+            if (account.user === logData.user && account.pass === logData.pass){
                 console.log("sucsessfull login")
             }
         }
@@ -85,13 +90,11 @@ export default function Login(){
 
     async function syncData(){
         await setDoc(docRef, {accounts})
+        const data = await getDoc(docRef)
+        console.log("sync")
+        console.log(data.data())   
     }
 
-
-    //sync data
-    async function syncData(){
-        
-    }
 
     return(
         <div className="login">
