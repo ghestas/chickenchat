@@ -13,9 +13,7 @@ function App() {
 
   return (
     <div className='app'>
-      {/* THIS CONTITIONAL RENDERING IS NOT WORKING */}
-      <Chat />
-      <Login log={Login}/>
+      {loggedIn === true ? <Chat /> : <Login log={Login}/>}
     </div>
   );
 }
