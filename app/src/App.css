@@ -38,8 +38,14 @@
 .person {
   padding: 10px;
   background-color: rgb(245, 245, 245);
+  margin: 10px 30px 10px 10px;
 }
 
-.message-window {
+.person h3 {
+  margin-top: 0;
+}
+
+.message-window-container {
   width: calc(100% - 300px);
+  border: 5px dotted black;
 }
