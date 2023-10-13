@@ -29,16 +29,21 @@ export default function Chat(){
     async function displayData(){
         var chatArr = await getDoc(docRef);
         chatArr = chatArr.data()
-        chatArr = chatArr.msgs
+        chatArr = chatArr.chatArr
         console.log(chatArr)
     }
 
     async function saveMsg(msg){
         var chatArr = await getDoc(docRef);
         chatArr = chatArr.data()
-        chatArr = chatArr.msgs
-        chatArr.push(newMessage)
+        chatArr = chatArr.chatArr
+        chatArr.push({
+            text: msg,
+            time: Date(),
+            user: 'me',
+        })
         await setDoc(docRef, {chatArr})
+        setNewMessage('')
     }
 
     return(
@@ -65,6 +70,7 @@ export default function Chat(){
                                 return newArr;
                             }
                         )
+                        saveMsg(newMessage)
                     }}>
                         <input type='text' onChange={(e) => {
                             setNewMessage(e.target.value)
