@@ -48,6 +48,23 @@ export default function Login({props}){
         pass: ""
     })
 
+    //firebase
+
+    useEffect(() => {
+        readAndSetFireBaseData()
+    }, [])
+
+
+    async function readAndSetFireBaseData(){
+        const dataRef = (await getDoc(docRef)); 
+        const dataVin = dataRef.data();
+        setData(dataVin)
+        setAvalible(dataVin.avalible)
+        setCodes(dataVin.blocks)
+        // setDark(dataVin.dark)
+        console.log(dataVin)
+      }
+
     function handleChangeCreate(event) {
         const {name, value} = event.target
         setCreateData(prevFormData => {
