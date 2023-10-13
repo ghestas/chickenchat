@@ -3,7 +3,7 @@ import { getDoc, doc, setDoc} from "firebase/firestore"
 import { db } from '../firebase';
 
 
-export default function Login(props){
+export default function Login({props}){
     const docRef = doc(db, "auth", "logins")
 
     const [accounts, setAccounts] = useState([])
