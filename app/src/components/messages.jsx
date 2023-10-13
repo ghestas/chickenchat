@@ -5,7 +5,7 @@ export default function Messages({chat}) {
 
     let messagesHtml = chat.chat.map(message => {
         return (
-            <p>{message}</p>
+            <p>{message.text}</p>
         );
     })
 

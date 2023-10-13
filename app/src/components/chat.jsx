@@ -4,7 +4,7 @@ import Person from "./person.jsx";
 import Messages from "./messages.jsx";
 
 export default function Chat(){
-    const [peopleArray, setPeopleArray] = useState([{name: 'jack', chat: ['hi','hi','this was my last message!', 'I CHANGED MY LAST MESSAGE!']}, {name: 'steven', chat: ['hjkhjkh', 'jhh', 'this was also my last message!']}]) //this'll be all the chats the user is in
+    const [peopleArray, setPeopleArray] = useState([{name: 'jack', chat: [{text: 'yooo'}]}, {name: 'steven', chat: [{text: 'hiiiii'}]}]) //this'll be all the chats the user is in
     const [selectedChat, setSelectedChat] = useState(1) //a chat will have a distinct name not chosen by anyone else
 
     const [newMessage, setNewMessage] = useState('')
@@ -23,7 +23,7 @@ export default function Chat(){
         <div className="chat-container">
             <div className="chat">
                 <div className="people-list">
-                    {peopleArray.map(element => {return <div onClick={selectChat}><Person name={element.name} lastMessage={element.chat[element.chat.length - 1]}/></div>})}
+                    {peopleArray.map(element => {return <div onClick={selectChat}><Person name={element.name} lastMessage={element.chat[element.chat.length - 1].text}/></div>})}
                 </div>
                 <div className="message-window-container">
                     <Messages chat={peopleArray[selectedChat]} />
@@ -34,7 +34,7 @@ export default function Chat(){
                                 let newArr = []
                                 for (let i = 0; i < peopleArray.length; i++) {
                                     if (i === selectedChat) {
-                                        newArr.push({name: peopleArray[i].name, chat: peopleArray[i].chat.concat(newMessage)})
+                                        newArr.push({name: peopleArray[i].name, chat: peopleArray[i].chat.concat({text: newMessage})})
                                     }
                                     else {
                                         newArr.push(peopleArray[i])
