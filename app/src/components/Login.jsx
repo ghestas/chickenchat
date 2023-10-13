@@ -89,7 +89,7 @@ export default function Login({props}){
             const account = accountsArr[i];
             if (account.user === logData.user && account.pass === logData.pass){
                 console.log("sucsessfull login")
-                // props.log()
+                props.log()
 
             }
         }

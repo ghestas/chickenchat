@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Person from "./person.jsx";
 import Messages from "./messages.jsx";
+import { getDoc, doc, setDoc} from "firebase/firestore"
+import { db } from '../firebase';
 
 export default function Chat(){
+    const docRef = doc(db, "data", "chat")
     const [peopleArray, setPeopleArray] = useState([{name: 'jack', chat: [{text: 'yooo'}]}, {name: 'steven', chat: [{text: 'hiiiii'}]}]) //this'll be all the chats the user is in
     const [selectedChat, setSelectedChat] = useState(1) //a chat will have a distinct name not chosen by anyone else
 
@@ -17,6 +20,25 @@ export default function Chat(){
                 setSelectedChat(i)
             }
         }
+    }
+
+    useEffect(() => {   
+        displayData()
+    }, [])
+
+    async function displayData(){
+        var chatArr = await getDoc(docRef);
+        chatArr = chatArr.data()
+        chatArr = chatArr.msgs
+        console.log(chatArr)
+    }
+
+    async function saveMsg(msg){
+        var chatArr = await getDoc(docRef);
+        chatArr = chatArr.data()
+        chatArr = chatArr.msgs
+        chatArr.push(newMessage)
+        await setDoc(docRef, {chatArr})
     }
 
     return(
