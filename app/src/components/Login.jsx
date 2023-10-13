@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getDoc, doc, setDoc} from "firebase/firestore"
-import { platesCollection, db } from '../firebase';
+import { db } from '../firebase';
 
 
 export default function Login(props){
