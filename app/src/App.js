@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import './App.css';
-import Login from './components/Login';
+import Login from './components/Login.jsx';
 import Chat from './components/chat'
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(1)
   const [user, setUser] = useState('')
 
   function Login(){
@@ -13,7 +13,9 @@ function App() {
 
   return (
     <div className='app'>
-      {loggedIn === true ? <Chat /> : <Login log={Login}/>}
+      {/* {loggedIn === 0 ? <Chat /> : <Login log={Login}/>} */}
+      {/* <Login /> */}
+      <Chat />
     </div>
   );
 }

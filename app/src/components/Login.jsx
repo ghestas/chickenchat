@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getDoc, doc, setDoc} from "firebase/firestore"
-import { platesCollection, db } from '../firebase';
+import { db } from '../firebase';
 
 
 export default function Login({props}){
@@ -48,6 +48,9 @@ export default function Login({props}){
         pass: ""
     })
 
+    //firebase
+
+
     function handleChangeCreate(event) {
         const {name, value} = event.target
         setCreateData(prevFormData => {
@@ -86,7 +89,7 @@ export default function Login({props}){
             const account = accountsArr[i];
             if (account.user === logData.user && account.pass === logData.pass){
                 console.log("sucsessfull login")
-                props.log()
+                // props.log()
 
             }
         }
