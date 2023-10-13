@@ -50,20 +50,6 @@ export default function Login({props}){
 
     //firebase
 
-    useEffect(() => {
-        readAndSetFireBaseData()
-    }, [])
-
-
-    async function readAndSetFireBaseData(){
-        const dataRef = (await getDoc(docRef)); 
-        const dataVin = dataRef.data();
-        setData(dataVin)
-        setAvalible(dataVin.avalible)
-        setCodes(dataVin.blocks)
-        // setDark(dataVin.dark)
-        console.log(dataVin)
-      }
 
     function handleChangeCreate(event) {
         const {name, value} = event.target
@@ -103,7 +89,7 @@ export default function Login({props}){
             const account = accountsArr[i];
             if (account.user === logData.user && account.pass === logData.pass){
                 console.log("sucsessfull login")
-                props.log()
+                // props.log()
 
             }
         }
