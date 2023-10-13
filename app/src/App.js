@@ -14,8 +14,8 @@ function App() {
   return (
     <div className='app'>
       {/* {loggedIn === 0 ? <Chat /> : <Login log={Login}/>} */}
-      <Login />
-      {/* <Chat /> */}
+      {/* <Login /> */}
+      <Chat />
     </div>
   );
 }
